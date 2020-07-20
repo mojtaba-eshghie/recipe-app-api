@@ -31,3 +31,14 @@ class ModelTests(TestCase):
             # WE CRAVE FOR A VALUEERROR!, and if it does not raise a value error,
             # then this test will fail
             get_user_model().objects.create_user(None, 'test123')
+    
+    
+    def test_create_new_superuser(self):
+        """Test creating a new superuser"""
+        user = get_user_model().objects.create_superuser(
+            'test@smt.com',
+            'test123'
+        )
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
